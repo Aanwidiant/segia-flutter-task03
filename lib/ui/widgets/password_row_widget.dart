@@ -30,7 +30,6 @@ class PasswordRowWidget extends StatelessWidget {
             ),
           ),
           const Text(':  ', style: TextStyle(fontSize: 16)),
-          // Value password
           Expanded(
             child: Text(
               showPassword ? value : '*' * value.length,
@@ -41,7 +40,6 @@ class PasswordRowWidget extends StatelessWidget {
               ),
             ),
           ),
-          // Icon button
           IconButton(
             icon: Icon(
               showPassword ? Icons.visibility : Icons.visibility_off,

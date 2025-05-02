@@ -13,7 +13,6 @@ class InfoRowWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Label
           SizedBox(
             width: 100,
             child: Text(
@@ -22,7 +21,6 @@ class InfoRowWidget extends StatelessWidget {
             ),
           ),
           const Text(':  ', style: TextStyle(fontSize: 16)),
-          // Value
           Expanded(
             child: Text(
               value,

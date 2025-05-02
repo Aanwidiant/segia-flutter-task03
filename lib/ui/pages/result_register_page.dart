@@ -68,7 +68,6 @@ class _ResultRegisterPageState extends State<ResultRegisterPage> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    // Button
                     CustomButtonWidget(
                       text: 'Oke',
                       onPressed: () {
@@ -78,7 +77,6 @@ class _ResultRegisterPageState extends State<ResultRegisterPage> {
                   ],
                 ),
               ),
-              // Logo
               const Positioned(top: 0, right: 0, child: LogoWidget()),
             ],
           ),
