@@ -70,7 +70,7 @@ class _ResultRegisterPageState extends State<ResultRegisterPage> {
                     const SizedBox(height: 16),
                     // Button
                     CustomButtonWidget(
-                      text: 'OKE',
+                      text: 'Oke',
                       onPressed: () {
                         Navigator.pushNamed(context, '/');
                       },
