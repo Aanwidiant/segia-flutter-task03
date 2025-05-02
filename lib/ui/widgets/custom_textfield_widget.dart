@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:segia_flutter_task03/common/app_colors.dart';
 
 class CustomTextfieldWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -20,29 +21,76 @@ class CustomTextfieldWidget extends StatefulWidget {
 
 class CustomTextfieldWidgetState extends State<CustomTextfieldWidget> {
   late bool _obscureText;
+  late FocusNode _focusNode;
+  late bool _isFocused;
+  late bool _hasError;
 
   @override
   void initState() {
     super.initState();
     _obscureText = widget.obscureText;
+    _focusNode = FocusNode();
+    _isFocused = false;
+    _hasError = false;
+
+    _focusNode.addListener(() {
+      setState(() {
+        _isFocused = _focusNode.hasFocus;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
       child: TextFormField(
         controller: widget.controller,
         obscureText: _obscureText,
+        focusNode: _focusNode,
         decoration: InputDecoration(
           labelText: widget.label,
+          labelStyle: TextStyle(
+            color:
+                _hasError
+                    ? AppColors.error
+                    : (_isFocused ? AppColors.primary : AppColors.textPrimary),
+          ),
           hintText: widget.hintText,
-          border: const OutlineInputBorder(),
+          hintStyle: TextStyle(color: AppColors.textSecondary),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color:
+                  _hasError
+                      ? AppColors.error
+                      : (_isFocused
+                          ? AppColors.primary
+                          : AppColors.textPrimary),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: _hasError ? AppColors.error : AppColors.primary,
+            ),
+          ),
+          errorStyle: TextStyle(color: AppColors.error),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.error),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.error),
+          ),
           suffixIcon:
               widget.label == 'Password'
                   ? IconButton(
                     icon: Icon(
                       _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color:
+                          _hasError
+                              ? AppColors.error
+                              : (_isFocused
+                                  ? AppColors.primary
+                                  : AppColors.textPrimary),
                     ),
                     onPressed: () {
                       setState(() {
@@ -54,32 +102,62 @@ class CustomTextfieldWidgetState extends State<CustomTextfieldWidget> {
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
+            setState(() {
+              _hasError = true;
+            });
             return '${widget.label} tidak boleh kosong';
           }
           if (widget.label == 'Email' &&
               !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+            setState(() {
+              _hasError = true;
+            });
             return 'Format email tidak valid';
           }
           if (widget.label == 'Password') {
             if (value.length < 8) {
+              setState(() {
+                _hasError = true;
+              });
               return 'Password harus memiliki minimal 8 karakter.';
             }
             if (!value.contains(RegExp(r'[A-Z]'))) {
+              setState(() {
+                _hasError = true;
+              });
               return 'Password harus memiliki minimal satu huruf besar.';
             }
             if (!value.contains(RegExp(r'[a-z]'))) {
+              setState(() {
+                _hasError = true;
+              });
               return 'Password harus memiliki minimal satu huruf kecil.';
             }
             if (!value.contains(RegExp(r'[0-9]'))) {
+              setState(() {
+                _hasError = true;
+              });
               return 'Password harus memiliki minimal satu angka.';
             }
             if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+              setState(() {
+                _hasError = true;
+              });
               return 'Password harus memiliki minimal satu simbol.';
             }
           }
+          setState(() {
+            _hasError = false;
+          });
           return null;
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 }

@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: AppColors.primaryLight,
+          color: AppColors.background,
           child: Stack(
             children: [
               Center(
@@ -37,33 +37,40 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: 'Username',
                           hintText: 'Masukkan username',
                         ),
+                        const SizedBox(height: 16),
                         CustomTextfieldWidget(
                           controller: emailController,
                           label: 'Email',
                           hintText: 'Masukkan email',
                         ),
+                        const SizedBox(height: 16),
                         CustomTextfieldWidget(
                           controller: passwordController,
                           label: 'Password',
                           hintText: 'Masukkan password',
                           obscureText: true,
                         ),
-                        const SizedBox(height: 12),
-                        CustomButtonWidget(
-                          text: 'Submit',
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamed(
-                                context,
-                                '/result',
-                                arguments: {
-                                  'username': usernameController.text,
-                                  'email': emailController.text,
-                                  'password': passwordController.text,
-                                },
-                              );
-                            }
-                          },
+                        const SizedBox(height: 16),
+                        SizedBox(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: CustomButtonWidget(
+                              text: 'Submit',
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/result',
+                                    arguments: {
+                                      'username': usernameController.text,
+                                      'email': emailController.text,
+                                      'password': passwordController.text,
+                                    },
+                                  );
+                                }
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),

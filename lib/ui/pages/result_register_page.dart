@@ -23,46 +23,52 @@ class _ResultRegisterPageState extends State<ResultRegisterPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: AppColors.primaryLight,
-          padding: const EdgeInsets.all(24),
+          color: AppColors.background,
           child: Stack(
             children: [
               Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Card(
-                      elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InfoRowWidget(
-                              label: 'Username',
-                              value: args['username'] ?? '',
-                            ),
-                            const SizedBox(height: 12),
-                            InfoRowWidget(
-                              label: 'Email',
-                              value: args['email'] ?? '',
-                            ),
-                            const SizedBox(height: 12),
-                            PasswordRowWidget(
-                              label: 'Password',
-                              value: args['password'] ?? '',
-                              showPassword: _showPassword,
-                              onToggle: () {
-                                setState(() {
-                                  _showPassword = !_showPassword;
-                                });
-                              },
-                            ),
-                          ],
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Card(
+                        elevation: 2,
+                        color: AppColors.snowWhite,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InfoRowWidget(
+                                label: 'Username',
+                                value: args['username'] ?? '',
+                              ),
+                              const SizedBox(height: 12),
+                              InfoRowWidget(
+                                label: 'Email',
+                                value: args['email'] ?? '',
+                              ),
+                              PasswordRowWidget(
+                                label: 'Password',
+                                value: args['password'] ?? '',
+                                showPassword: _showPassword,
+                                onToggle: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
+                    // Button
                     CustomButtonWidget(
                       text: 'OKE',
                       onPressed: () {
@@ -72,6 +78,7 @@ class _ResultRegisterPageState extends State<ResultRegisterPage> {
                   ],
                 ),
               ),
+              // Logo
               const Positioned(top: 0, right: 0, child: LogoWidget()),
             ],
           ),

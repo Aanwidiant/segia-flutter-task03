@@ -12,7 +12,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: AppColors.primaryLight,
+          color: AppColors.background,
           child: Stack(
             children: [
               Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:segia_flutter_task03/common/app_colors.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final String text;
@@ -17,9 +18,9 @@ class CustomButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          backgroundColor: const Color(0xFFFFCE7A),
-          foregroundColor: Colors.black,
+          padding: const EdgeInsets.symmetric(horizontal: 56, vertical: 16),
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textPrimary,
           textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         child: Text(text),

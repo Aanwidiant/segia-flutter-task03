@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:segia_flutter_task03/common/app_colors.dart';
 
 class HeroContentWidget extends StatelessWidget {
   final String imagePath;
@@ -19,25 +20,28 @@ class HeroContentWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 64,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFFCE7A),
+                color: AppColors.primary,
               ),
             ),
           ),
           SizedBox(
             width: 240,
-            child: RichText(
-              text: TextSpan(
-                style: const TextStyle(fontSize: 56, fontWeight: FontWeight.bold),
-                children: const [
-                  TextSpan(
-                    text: 'laun',
-                    style: TextStyle(color: Color(0xFF0A0A0A)),
-                  ),
-                  TextSpan(
-                    text: 'dry',
-                    style: TextStyle(color: Color(0xFFFFCE7A)),
-                  ),
-                ],
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: RichText(
+                text: TextSpan(
+                  style: const TextStyle(fontSize: 56, fontWeight: FontWeight.bold),
+                  children: const [
+                    TextSpan(
+                      text: 'laun',
+                      style: TextStyle(color: AppColors.textPrimary),
+                    ),
+                    TextSpan(
+                      text: 'dry',
+                      style: TextStyle(color: AppColors.primary),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
